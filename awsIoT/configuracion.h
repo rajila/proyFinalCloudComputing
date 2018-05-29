@@ -13,8 +13,6 @@
 #define CONTMAX 10
 
 // Parámetros de Conexión Wifi
-//const char* _ssid = "MOVISTAR_F979";
-//const char* _password = "143D73F57C243A9C1EBF";
 const char* _ssid = "xxxxxxxxxx";
 const char* _password = "xxxxxxxxxx";
 
