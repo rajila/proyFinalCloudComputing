@@ -1,0 +1,31 @@
+var AWS = require('aws-sdk');
+
+var CONFIG_AWSIOT = {
+  endpoint: 'xxxxxxxxxxxxxxx.iot.eu-west-2.amazonaws.com',
+  region: 'eu-west-2',
+  accessKeyId: 'xxxxxxxxxxxxxx', // username del usuario creado en IAM
+  secretAccessKey: 'xxxxxxxxxxxxxxxxxxxx' // pass del usuario creado en IAM
+};
+
+var iotdata = new AWS.IotData(CONFIG_AWSIOT);
+exports.handler = function(event, context) {
+    console.log("Bandera i");
+    var _clicButtonIoT = event.clickType;
+    
+    var params = {
+        topic: 'interrupcion_boton_iot',
+        //payload:JSON.stringify(event),
+        payload:_clicButtonIoT,
+        qos: 0
+        };
+        
+ 
+    iotdata.publish(params, function(err, data){
+        console.log("Bandera ii");
+        //console.log("data --> "+ data.toString());
+        if(err) return console.log(err);
+        else return context.succeed(event);
+        //else return context.succeed(_clicButtonIoT);
+    });
+    
+};
